@@ -1,7 +1,6 @@
 # :unicorn: Vite Pretty Lint
 
 ![Build](https://img.shields.io/github/workflow/status/tzsk/vite-pretty-lint/Tests/master?logo=github&style=for-the-badge)
-![Coveralls](https://img.shields.io/coveralls/github/tzsk/vite-pretty-lint/master?logo=coveralls&style=for-the-badge)
 [![npm](https://img.shields.io/npm/v/vite-pretty-lint?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/vite-pretty-lint)
 [![npm](https://img.shields.io/npm/dt/vite-pretty-lint?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/vite-pretty-lint)
 
