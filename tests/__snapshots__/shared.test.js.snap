@@ -1,0 +1,73 @@
+// Vitest Snapshot v1
+
+exports[`Shared > Common Eslint Config 1`] = `
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+  },
+  "overrides": [],
+}
+`;
+
+exports[`Shared > Common Lint Ignore 1`] = `
+[
+  "node_modules",
+  "dist",
+]
+`;
+
+exports[`Shared > Common Packages 1`] = `
+[
+  "eslint",
+  "prettier",
+  "eslint-plugin-prettier",
+  "eslint-config-prettier",
+  "vite-plugin-eslint",
+]
+`;
+
+exports[`Shared > Common Prettier Config 1`] = `
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+}
+`;
+
+exports[`Shared > It can configure vite config 1`] = `
+"import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import eslintPlugin from 'vite-plugin-eslint';
+
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), eslintPlugin()]
+});"
+`;
+
+exports[`Shared > It can configure vite config 2`] = `
+"import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import eslintPlugin from 'vite-plugin-eslint';
+
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue(), eslintPlugin()]
+});"
+`;
+
+exports[`Shared > It will ignore vite config if eslint exists 1`] = `
+"import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import eslintPlugin from 'vite-plugin-eslint';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue(), eslintPlugin()]
+});"
+`;

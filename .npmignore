@@ -1,0 +1,7 @@
+node_modules
+assets
+coverage
+tests
+.eslintrc.json
+.prettierrc.json
+vitest.config.js

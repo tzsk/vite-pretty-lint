@@ -1,0 +1,31 @@
+{
+  "name": "vite-pretty-lint",
+  "version": "0.0.1",
+  "description": "ESLint and Prettier for Vite Project",
+  "author": "Kazi Ahmed",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "vite-pretty-lint": "lib/main.js"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@babel/core": "^7.16.12",
+    "chalk": "^5.0.0",
+    "enquirer": "^2.3.6",
+    "gradient-string": "^2.0.0",
+    "nanospinner": "^1.0.0"
+  },
+  "devDependencies": {
+    "c8": "^7.11.0",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "vitest": "^0.2.5"
+  }
+}
