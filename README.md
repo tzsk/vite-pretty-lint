@@ -16,10 +16,10 @@ After creating a project with Vite. You can run this command inside the project.
 
 ```sh
 // NPM
-npx vite-pretty-lint
+npm init vite-pretty-lint
 
 // YARN
-yarn vite-pretty-lint
+yarn create vite-pretty-lint
 ```
 
 ## :microscope: Testing
