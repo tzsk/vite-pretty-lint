@@ -20,6 +20,9 @@ npm init vite-pretty-lint
 
 // YARN
 yarn create vite-pretty-lint
+
+// PNPM
+pnpm init vite-pretty-lint
 ```
 
 ## :microscope: Testing

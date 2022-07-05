@@ -9,6 +9,9 @@
   "bin": {
     "create-vite-pretty-lint": "lib/main.js"
   },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "lint": "eslint --ext .js",
     "test": "vitest",
