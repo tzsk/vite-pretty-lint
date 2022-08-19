@@ -1,6 +1,6 @@
 {
   "name": "create-vite-pretty-lint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ESLint and Prettier for Vite Project",
   "author": "Kazi Ahmed",
   "repository": "https://github.com/tzsk/vite-pretty-lint",
@@ -25,6 +25,7 @@
     "nanospinner": "^1.0.0"
   },
   "devDependencies": {
+    "@vitest/coverage-c8": "^0.22.1",
     "c8": "^7.11.0",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",

@@ -1,0 +1,27 @@
+// Vitest Snapshot v1
+
+exports[`Utils > it has list of project types to ask for 1`] = `
+[
+  {
+    "choices": [
+      "react-ts",
+      "react",
+      "vue-ts",
+      "vue",
+    ],
+    "message": "What type of project do you have?",
+    "name": "projectType",
+    "type": "select",
+  },
+  {
+    "choices": [
+      "npm",
+      "yarn",
+      "pnpm",
+    ],
+    "message": "What package manager do you use?",
+    "name": "packageManager",
+    "type": "select",
+  },
+]
+`;
