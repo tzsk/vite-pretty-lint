@@ -42,7 +42,6 @@ exports[`Shared > It can configure vite config 1`] = `
 import react from '@vitejs/plugin-react';
 import eslintPlugin from 'vite-plugin-eslint';
 
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), eslintPlugin()]
@@ -53,7 +52,6 @@ exports[`Shared > It can configure vite config 2`] = `
 "import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
-
 
 // https://vitejs.dev/config/
 export default defineConfig({
