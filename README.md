@@ -1,6 +1,6 @@
 # :unicorn: Vite Pretty Lint
 
-![Build](https://img.shields.io/github/workflow/status/tzsk/vite-pretty-lint/Tests/main?logo=github&style=for-the-badge)
+![Build](https://img.shields.io/github/actions/workflow/status/tzsk/vite-pretty-lint/test.yml?branch=main&logo=github&style=for-the-badge)
 [![npm](https://img.shields.io/npm/v/create-vite-pretty-lint?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/create-vite-pretty-lint)
 [![npm](https://img.shields.io/npm/dt/create-vite-pretty-lint?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/create-vite-pretty-lint)
 
@@ -22,7 +22,7 @@ npm init vite-pretty-lint
 yarn create vite-pretty-lint
 
 // PNPM
-pnpm init vite-pretty-lint
+pnpm create vite-pretty-lint
 ```
 
 ## :microscope: Testing
