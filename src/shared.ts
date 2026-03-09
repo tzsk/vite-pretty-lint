@@ -9,7 +9,7 @@ export const commonPackages = [
   'vite-plugin-eslint',
 ];
 
-export const eslintConfig = {
+export const eslintConfig: { env: any; overrides: any[] } = {
   env: {
     browser: true,
     es2021: true,
@@ -27,38 +27,43 @@ export const prettierConfig = {
 
 export const eslintIgnore = ['node_modules', 'dist'];
 
-export function viteEslint(code) {
+export function viteEslint(code: string): string {
   const ast = babel.parseSync(code, {
     sourceType: 'module',
     comments: false,
   });
+
+  if (!ast || !ast.program) {
+    return code;
+  }
+
   const { program } = ast;
 
   const importList = program.body
-    .filter((body) => {
+    .filter((body: any) => {
       return body.type === 'ImportDeclaration';
     })
-    .map((body) => {
+    .map((body: any) => {
       delete body.trailingComments;
       return body;
     });
 
-  if (importList.find((body) => body.source.value === 'vite-plugin-eslint')) {
+  if (importList.find((body: any) => body.source.value === 'vite-plugin-eslint')) {
     return code;
   }
 
-  const nonImportList = program.body.filter((body) => {
+  const nonImportList = program.body.filter((body: any) => {
     return body.type !== 'ImportDeclaration';
   });
   const exportStatement = program.body.find(
-    (body) => body.type === 'ExportDefaultDeclaration'
-  );
+    (body: any) => body.type === 'ExportDefaultDeclaration'
+  ) as any;
 
-  if (exportStatement.declaration.type === 'CallExpression') {
+  if (exportStatement && exportStatement.declaration.type === 'CallExpression') {
     const [argument] = exportStatement.declaration.arguments;
-    if (argument.type === 'ObjectExpression') {
+    if (argument && argument.type === 'ObjectExpression') {
       const plugin = argument.properties.find(
-        ({ key }) => key.name === 'plugins'
+        ({ key }: any) => key && key.name === 'plugins'
       );
 
       if (plugin) {
@@ -67,11 +72,12 @@ export function viteEslint(code) {
     }
   }
 
-  importList.push(eslintImport);
-  importList.push(blankLine);
+  importList.push(eslintImport as any);
+  importList.push(blankLine as any);
   program.body = importList.concat(nonImportList);
 
   ast.program = program;
 
-  return babel.transformFromAstSync(ast, code, { sourceType: 'module' }).code;
+  const transformed = babel.transformFromAstSync(ast, code, { sourceType: 'module' });
+  return transformed ? transformed.code || code : code;
 }

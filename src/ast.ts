@@ -1,4 +1,4 @@
-export const eslintImport = {
+export const eslintImport: any = {
   type: 'ImportDeclaration',
   specifiers: [
     {
@@ -19,7 +19,7 @@ export const eslintImport = {
   },
 };
 
-export const eslintPluginCall = {
+export const eslintPluginCall: any = {
   type: 'CallExpression',
   callee: {
     type: 'Identifier',
@@ -28,7 +28,7 @@ export const eslintPluginCall = {
   arguments: [],
 };
 
-export const blankLine = {
+export const blankLine: any = {
   type: 'Identifier',
   name: '\n',
 };

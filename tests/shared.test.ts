@@ -4,7 +4,7 @@ import {
   eslintIgnore,
   prettierConfig,
   viteEslint,
-} from '../lib/shared';
+} from '../src/shared.js';
 import fs from 'fs';
 import { describe, expect, test } from 'vitest';
 

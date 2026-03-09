@@ -2,10 +2,11 @@ import enquirer from 'enquirer';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export function getOptions() {
-  const OPTIONS = [];
+export function getOptions(): string[] {
+  const OPTIONS: string[] = [];
   fs.readdirSync(path.join(__dirname, 'templates')).forEach((template) => {
     const { name } = path.parse(path.join(__dirname, 'templates', template));
 
@@ -14,7 +15,7 @@ export function getOptions() {
   return OPTIONS;
 }
 
-export function askForProjectType() {
+export function askForProjectType(): Promise<{ projectType: string; packageManager: string }> {
   return enquirer.prompt([
     {
       type: 'select',
