@@ -1,4 +1,6 @@
-export const eslintImport: any = {
+import { CallExpression, Identifier, ImportDeclaration } from '@babel/types';
+
+export const eslintImport = {
   type: 'ImportDeclaration',
   specifiers: [
     {
@@ -17,18 +19,18 @@ export const eslintImport: any = {
     },
     value: 'vite-plugin-eslint',
   },
-};
+} as ImportDeclaration;
 
-export const eslintPluginCall: any = {
+export const eslintPluginCall = {
   type: 'CallExpression',
   callee: {
     type: 'Identifier',
     name: 'eslintPlugin',
   },
   arguments: [],
-};
+} as CallExpression;
 
-export const blankLine: any = {
+export const blankLine = {
   type: 'Identifier',
   name: '\n',
-};
+} as Identifier;

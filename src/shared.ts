@@ -9,7 +9,12 @@ export const commonPackages = [
   'vite-plugin-eslint',
 ];
 
-export const eslintConfig: { env: any; overrides: any[] } = {
+import type { ImportDeclaration, ExportDefaultDeclaration, CallExpression, ObjectExpression, ObjectProperty, Identifier } from '@babel/types';
+
+export const eslintConfig: {
+  env: Record<string, boolean>;
+  overrides: Record<string, unknown>[];
+} = {
   env: {
     browser: true,
     es2021: true,
@@ -40,44 +45,58 @@ export function viteEslint(code: string): string {
   const { program } = ast;
 
   const importList = program.body
-    .filter((body: any) => {
+    .filter((body) => {
       return body.type === 'ImportDeclaration';
     })
-    .map((body: any) => {
-      delete body.trailingComments;
+    .map((body) => {
+      if (body.type === 'ImportDeclaration') {
+         body.trailingComments = null;
+      }
       return body;
-    });
+    }) as ImportDeclaration[];
 
-  if (importList.find((body: any) => body.source.value === 'vite-plugin-eslint')) {
+  if (
+    importList.find(
+      (body) => body.source && body.source.value === 'vite-plugin-eslint'
+    )
+  ) {
     return code;
   }
 
-  const nonImportList = program.body.filter((body: any) => {
+  const nonImportList = program.body.filter((body) => {
     return body.type !== 'ImportDeclaration';
   });
+
   const exportStatement = program.body.find(
-    (body: any) => body.type === 'ExportDefaultDeclaration'
-  ) as any;
+    (body) => body.type === 'ExportDefaultDeclaration'
+  ) as ExportDefaultDeclaration | undefined;
 
   if (exportStatement && exportStatement.declaration.type === 'CallExpression') {
-    const [argument] = exportStatement.declaration.arguments;
-    if (argument && argument.type === 'ObjectExpression') {
-      const plugin = argument.properties.find(
-        ({ key }: any) => key && key.name === 'plugins'
-      );
+    const callExp = exportStatement.declaration as CallExpression;
+    const argument = callExp.arguments[0];
 
-      if (plugin) {
+    if (argument && argument.type === 'ObjectExpression') {
+      const objExp = argument as ObjectExpression;
+      const plugin = objExp.properties.find(
+        (prop) =>
+          prop.type === 'ObjectProperty' &&
+          prop.key.type === 'Identifier' &&
+          prop.key.name === 'plugins'
+      ) as ObjectProperty | undefined;
+
+      if (plugin && plugin.value.type === 'ArrayExpression') {
         plugin.value.elements.push(eslintPluginCall);
       }
     }
   }
 
-  importList.push(eslintImport as any);
-  importList.push(blankLine as any);
-  program.body = importList.concat(nonImportList);
+  const finalBody = [...importList, eslintImport, blankLine, ...nonImportList];
+  program.body = finalBody as babel.types.Statement[];
 
   ast.program = program;
 
-  const transformed = babel.transformFromAstSync(ast, code, { sourceType: 'module' });
+  const transformed = babel.transformFromAstSync(ast, code, {
+    sourceType: 'module',
+  });
   return transformed ? transformed.code || code : code;
 }

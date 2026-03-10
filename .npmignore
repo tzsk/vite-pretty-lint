@@ -6,4 +6,5 @@ tests
 .prettierrc.json
 vitest.config.js
 
-dist
+
+src
