@@ -27,7 +27,7 @@ async function run() {
       gradient.morning('\n🚀 Welcome to Eslint & Prettier Setup for Vite!\n')
     )
   );
-  let projectType, packageManager;
+  let projectType: string, packageManager: string;
 
   try {
     const answers = await askForProjectType();
@@ -45,7 +45,7 @@ async function run() {
   const eslintConfigOverrides = [...eslintConfig.overrides, ...eslintOverrides];
   const eslint = { ...eslintConfig, overrides: eslintConfigOverrides };
 
-  const commandMap = {
+  const commandMap: Record<string, string> = {
     npm: `npm install --save-dev ${packageList.join(' ')}`,
     yarn: `yarn add --dev ${packageList.join(' ')}`,
     pnpm: `pnpm install --save-dev ${packageList.join(' ')}`,
@@ -73,7 +73,7 @@ async function run() {
   }
 
   const spinner = createSpinner('Installing packages...').start();
-  exec(`${commandMap[packageManager]}`, { cwd: projectDirectory }, (error) => {
+  exec(`${installCommand}`, { cwd: projectDirectory }, (error) => {
     if (error) {
       spinner.error({
         text: chalk.bold.red('Failed to install packages!'),

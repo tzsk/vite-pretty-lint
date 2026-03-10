@@ -6,13 +6,16 @@
   "repository": "https://github.com/tzsk/vite-pretty-lint",
   "license": "MIT",
   "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
   "bin": {
-    "create-vite-pretty-lint": "lib/main.js"
+    "create-vite-pretty-lint": "dist/main.js"
   },
   "engines": {
     "node": ">=20"
   },
   "scripts": {
+    "build": "tsup",
     "lint": "eslint .",
     "test": "vitest",
     "coverage": "vitest run --coverage"
@@ -25,14 +28,21 @@
     "nanospinner": "^1.2.2"
   },
   "devDependencies": {
+    "@babel/types": "^7.29.0",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
+    "@types/babel__core": "^7.20.5",
+    "@types/gradient-string": "^1.1.6",
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^25.3.5",
     "@vitest/coverage-istanbul": "^4.0.18",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.4.0",
     "prettier": "^3.8.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   }
 }

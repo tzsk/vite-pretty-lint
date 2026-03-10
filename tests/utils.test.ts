@@ -1,6 +1,6 @@
 import enquirer from 'enquirer';
 import { describe, expect, test, vi } from 'vitest';
-import { askForProjectType, getOptions } from '../lib/utils';
+import { askForProjectType, getOptions } from '../src/utils.js';
 
 describe('Utils', () => {
   test('It can get a list of templates', () => {
